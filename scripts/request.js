@@ -18,4 +18,21 @@ async function getPostsApi(page) {
     .then((resp) => resp);
   return response;
 }
-export { getPostsApi };
+async function getPostId(id) {
+  const response = fetch(`https://m2-api-living.herokuapp.com/news/${id}`, {
+    method: "GET",
+    headers: myHeader,
+  })
+    .then((resp) => {
+      if (resp.ok) {
+        return resp.json();
+      } else {
+        console.log(resp.json().then((response) => response.message));
+      }
+    })
+    .then((resp) => resp);
+
+  return response;
+}
+
+export { getPostsApi, getPostId };

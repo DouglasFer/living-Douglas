@@ -1,5 +1,6 @@
 import { getPostsApi } from "../../scripts/request.js";
 import { observer } from "../../scripts/observerScroll.js";
+import { getFilterFromLocalStorage } from "../../scripts/localStorage.js";
 
 let array_api = await getPostsApi();
 let selected_category = "Todos";
@@ -7,12 +8,15 @@ var count_page = 0;
 const ul_posts = document.getElementById("ul_posts");
 
 export async function render(posts_list) {
+  const categoryFromLocalStorage = getFilterFromLocalStorage();
   const obsever_exist = document.querySelector(".observer");
   if (obsever_exist) {
     obsever_exist.remove();
   }
   const new_posts_list = posts_list.filter(
-    (post) => post.category == selected_category || selected_category == "Todos"
+    (post) =>
+      post.category == categoryFromLocalStorage ||
+      categoryFromLocalStorage == "Todos"
   );
 
   new_posts_list.forEach((element) => {
@@ -43,12 +47,20 @@ export function createCards(arr_api) {
   div_content.classList.add("div_content_card");
   title_content.classList.add("title_content");
   p_access_content.classList.add("p_access_content");
-  li_posts.id = arr_api.id;
+  p_access_content.id = arr_api.id;
 
   img_card.src = arr_api.image;
   title_content.innerText = arr_api.title;
   span_description.innerText = arr_api.description;
   p_access_content.innerText = "Acessar conteúdo";
+  p_access_content.style.cursor = "pointer";
+  p_access_content.addEventListener("click", () => {
+    const postIdLocalStorage = localStorage.setItem(
+      "post",
+      JSON.stringify(p_access_content.id)
+    );
+    window.location.href = "../pages/post/index.html";
+  });
 
   div_content.append(title_content, span_description, p_access_content);
   div_container.append(img_card, div_content);
@@ -67,6 +79,7 @@ function renderFilterPosts(posts_list) {
       ul_posts.innerText = "";
       count_page = 0;
       let response = await getPostsApi(count_page);
+      localStorage.setItem("Filtro", JSON.stringify(selected_category));
       render(response.news);
     });
   });
