@@ -22,21 +22,21 @@ button:hover {
   margin-left: 80px;
   margin-top: 54px;
 }
-#btn_all {
+.btn_all {
   width: 92px;
 }
-#btn_pain,
-#btn_aroma {
+.btn_pain,
+.btn_aroma {
   width: 104px;
 }
-#btn_deco,
-#btn_security {
+.btn_deco,
+.btn_security {
   width: 128px;
 }
-#btn_orga {
+.btn_orga {
   width: 142px;
 }
-#btn_clean,
-#btn_reform {
+.btn_clean,
+.btn_reform {
   width: 110px;
 }
