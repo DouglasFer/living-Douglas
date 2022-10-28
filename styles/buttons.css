@@ -1,0 +1,42 @@
+button {
+  background-color: var(--color-grey-700);
+  border: 1px solid var(--color-grey-700);
+  border-radius: 32px;
+  color: var(--color-grey-200);
+  font-weight: 600;
+  font-size: 16px;
+  height: 38px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--color-brand-100);
+  border: 1px solid var(--color-brand-100);
+  border-radius: 32px;
+  color: var(--color-grey-700);
+}
+.btn_filter {
+  width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 80px;
+  margin-top: 54px;
+}
+#btn_all {
+  width: 92px;
+}
+#btn_pain,
+#btn_aroma {
+  width: 104px;
+}
+#btn_deco,
+#btn_security {
+  width: 128px;
+}
+#btn_orga {
+  width: 142px;
+}
+#btn_clean,
+#btn_reform {
+  width: 110px;
+}
